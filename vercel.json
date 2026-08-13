@@ -1,0 +1,40 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "web": {
+      "root": "apps/web/",
+      "framework": "nextjs"
+    },
+    "checkout": {
+      "root": "services/checkout/",
+      "framework": "fastapi",
+      "entrypoint": "main:app",
+      "bindings": [
+        {
+          "type": "service",
+          "service": "reservations",
+          "format": "url",
+          "env": "RESERVATIONS_SERVICE_URL"
+        }
+      ]
+    },
+    "reservations": {
+      "root": "services/reservations/",
+      "entrypoint": "Dockerfile.vercel"
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/api/v1/checkout/(.*)",
+      "destination": {
+        "service": "checkout"
+      }
+    },
+    {
+      "source": "/(.*)",
+      "destination": {
+        "service": "web"
+      }
+    }
+  ]
+}

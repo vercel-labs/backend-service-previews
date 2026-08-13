@@ -1,0 +1,19 @@
+node_modules/
+.next/
+.vercel/
+.venv/
+.pytest_cache/
+__pycache__/
+*.pyc
+*.tsbuildinfo
+bin/
+.env*
+!.env.example
+.DS_Store
+.vercel
+
+# local working docs
+EDITORIAL_TODO.md
+GUIDE_OUTLINE.md
+VERIFICATION.md
+draft-v2.md
